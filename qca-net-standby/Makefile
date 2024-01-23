@@ -41,10 +41,12 @@ EXTRA_CFLAGS+= \
 	-I$(STAGING_DIR)/usr/include/qca-ssdk/init \
 	-I$(STAGING_DIR)/usr/include/qca-nss-dp \
 	-I$(LINUX_DIR)/user_headers/include/
-#Disabling wifi reg in netstandby driver for open profile
+
+# Enable wifi reg in netstandby driver for prop
 ifneq ($(OPEN_PROFILE),y)
-EXTRA_CFLAGS+= -DNETSTANDBY_WIFI_SS_ENABLE
+EXTRA_CFLAGS+= -DRM_QCA_PROP
 endif
+
 define Build/Compile
 	$(KERNEL_MAKE) -C "$(LINUX_DIR)" $(strip $(MAKE_OPTS)) \
 		CROSS_COMPILE="$(TARGET_CROSS)" \
