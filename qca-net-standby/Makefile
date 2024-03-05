@@ -18,6 +18,11 @@ endif
 ifeq ($(CONFIG_DEFAULT_kmod-ath11k),y)
 OPEN_PROFILE=y
 endif
+
+ifeq ($(CONFIG_TARGET_ipq53xx), y)
+EXTRA_CFLAGS += -DMIAMI_PORT_ERP
+endif
+
 define KernelPackage/rsrcmgr-netstandby-drv
   SECTION:=kernel
   CATEGORY:=Kernel modules
