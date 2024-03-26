@@ -20,7 +20,7 @@ OPEN_PROFILE=y
 endif
 
 ifeq ($(CONFIG_TARGET_ipq53xx), y)
-EXTRA_CFLAGS += -DMIAMI_PORT_ERP
+EXTRA_CFLAGS += -DIPQ5322_ERP
 endif
 
 define KernelPackage/rsrcmgr-netstandby-drv
