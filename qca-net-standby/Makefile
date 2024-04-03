@@ -23,6 +23,10 @@ ifeq ($(CONFIG_TARGET_ipq53xx), y)
 EXTRA_CFLAGS += -DIPQ5322_ERP
 endif
 
+ifeq ($(CONFIG_RM_QCA_256M), y)
+EXTRA_CFLAGS += -DRM_QCA_256M_PROFILE=1
+endif
+
 define KernelPackage/rsrcmgr-netstandby-drv
   SECTION:=kernel
   CATEGORY:=Kernel modules
