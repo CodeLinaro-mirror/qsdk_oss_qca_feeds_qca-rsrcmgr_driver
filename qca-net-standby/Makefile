@@ -1,5 +1,7 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
+include $(INCLUDE_DIR)/package.mk
+ifneq ($(CONFIG_GCC_USE_VERSION_13), y)
 PKG_NAME:=rsrcmgr-netstandby-drv
 PKG_SOURCE_PROTO:=git
 PKG_BRANCH:=master
@@ -11,7 +13,6 @@ ifeq ($(DUMP)$(PKG_VERSION),)
 endif
 PKG_BUILD_DEPENDS :=
 MAKE_OPTS:=
-include $(INCLUDE_DIR)/package.mk
 ifeq ($(CONFIG_DEFAULT_kmod-ath12k),y)
 OPEN_PROFILE=y
 endif
@@ -75,3 +76,4 @@ define Build/InstallDev
 	$(call Build/InstallDev/rsrcmgr-netstandby-drv,$(1))
 endef
 $(eval $(call KernelPackage,rsrcmgr-netstandby-drv))
+endif
