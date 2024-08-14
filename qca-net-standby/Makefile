@@ -1,7 +1,6 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/package.mk
-ifneq ($(CONFIG_GCC_USE_VERSION_13), y)
 PKG_NAME:=rsrcmgr-netstandby-drv
 PKG_SOURCE_PROTO:=git
 PKG_BRANCH:=master
@@ -34,9 +33,9 @@ define KernelPackage/rsrcmgr-netstandby-drv
   SUBMENU:=Network Devices
   TITLE:=Standby module
 ifeq ($(OPEN_PROFILE),y)
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp @!LINUX_3_18
+  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack @!LINUX_3_18
 else
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-qca-wifi @!LINUX_3_18
+  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +kmod-qca-wifi @!LINUX_3_18
 endif
   FILES:=$(PKG_BUILD_DIR)/qca-net-standby.ko
 endef
@@ -76,4 +75,3 @@ define Build/InstallDev
 	$(call Build/InstallDev/rsrcmgr-netstandby-drv,$(1))
 endef
 $(eval $(call KernelPackage,rsrcmgr-netstandby-drv))
-endif
