@@ -33,9 +33,9 @@ define KernelPackage/rsrcmgr-netstandby-drv
   SUBMENU:=Network Devices
   TITLE:=Standby module
 ifeq ($(OPEN_PROFILE),y)
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack @!LINUX_3_18
+  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack @!LINUX_3_18
 else
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +kmod-qca-wifi @!LINUX_3_18
+  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +kmod-qca-wifi @!LINUX_3_18
 endif
   FILES:=$(PKG_BUILD_DIR)/qca-net-standby.ko
 endef
