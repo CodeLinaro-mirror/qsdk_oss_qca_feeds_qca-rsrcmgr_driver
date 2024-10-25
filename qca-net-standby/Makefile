@@ -32,13 +32,10 @@ define KernelPackage/rsrcmgr-netstandby-drv
   CATEGORY:=Kernel modules
   SUBMENU:=Network Devices
   TITLE:=Standby module
-ifeq ($(OPEN_PROFILE),y)
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack @!LINUX_3_18
-else
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +kmod-qca-wifi @!LINUX_3_18
-endif
+  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +PACKAGE_kmod-cfg80211-internal:kmod-qca-wifi
   FILES:=$(PKG_BUILD_DIR)/qca-net-standby.ko
 endef
+
 define KernelPackage/rsrcmgr-netstandby-drv/Description
 Kernel module for ErP network standby framework to interface
 with subsystem drivers and netstandby application library
