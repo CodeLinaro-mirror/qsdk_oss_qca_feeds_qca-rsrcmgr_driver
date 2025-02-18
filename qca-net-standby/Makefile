@@ -57,8 +57,10 @@ EXTRA_CFLAGS+= \
 # Enable wifi reg in netstandby driver for prop
 ifneq ($(OPEN_PROFILE),y)
 EXTRA_CFLAGS+= -DRM_QCA_PROP
+ifneq ($(CONFIG_RM_QCA_256M), y)
 #ERP phase 2 is enabled only for prop & 5.4 kernel
 MAKE_OPTS+=erp_phase_2=y
+endif
 endif
 
 define Build/Compile
