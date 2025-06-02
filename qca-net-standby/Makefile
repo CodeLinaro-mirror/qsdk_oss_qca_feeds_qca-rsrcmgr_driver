@@ -54,12 +54,12 @@ EXTRA_CFLAGS+= \
 	-I$(STAGING_DIR)/usr/include/qca-nss-dp \
 	-I$(LINUX_DIR)/user_headers/include/
 
+ifneq ($(CONFIG_RM_QCA_256M), y)
+#ERP phase 2 is not enabled only for 256M
+MAKE_OPTS+=erp_phase_2=y
 # Enable wifi reg in netstandby driver for prop
 ifneq ($(OPEN_PROFILE),y)
 EXTRA_CFLAGS+= -DRM_QCA_PROP
-ifneq ($(CONFIG_RM_QCA_256M), y)
-#ERP phase 2 is enabled only for prop & 5.4 kernel
-MAKE_OPTS+=erp_phase_2=y
 endif
 endif
 
