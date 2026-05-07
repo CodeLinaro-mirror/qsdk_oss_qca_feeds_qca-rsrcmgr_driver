@@ -29,6 +29,16 @@ EXTRA_CFLAGS += -DMHT_ETH_INTF
 EXTRA_CFLAGS += -DTARGET_IPQ54xx
 endif
 
+ifeq ($(CONFIG_TARGET_ipq52xx), y)
+EXTRA_CFLAGS += -DMHT_ETH_INTF
+EXTRA_CFLAGS += -DTARGET_IPQ52xx
+endif
+
+ifeq ($(CONFIG_TARGET_ipq96xx), y)
+EXTRA_CFLAGS += -DMHT_ETH_INTF
+EXTRA_CFLAGS += -DTARGET_IPQ96xx
+endif
+
 ifeq ($(CONFIG_RM_QCA_256M), y)
 EXTRA_CFLAGS += -DRM_QCA_256M_PROFILE=1
 endif
@@ -42,7 +52,7 @@ define KernelPackage/rsrcmgr-netstandby-drv
   CATEGORY:=Kernel modules
   SUBMENU:=Network Devices
   TITLE:=Standby module
-  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +PACKAGE_kmod-cfg80211-internal:kmod-qca-wifi
+  DEPENDS:=@TARGET_ipq95xx||TARGET_ipq53xx||TARGET_ipq54xx||TARGET_ipq52xx||TARGET_ipq96xx +kmod-qca-nss-ppe +kmod-qca-nss-ppe-rule +kmod-qca-nss-dp +kmod-nf-conntrack +PACKAGE_kmod-cfg80211-internal:kmod-qca-wifi
   FILES:=$(PKG_BUILD_DIR)/qca-net-standby.ko
 endef
 
