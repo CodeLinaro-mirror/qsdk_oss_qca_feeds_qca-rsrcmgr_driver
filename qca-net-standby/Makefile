@@ -39,14 +39,6 @@ EXTRA_CFLAGS += -DMHT_ETH_INTF
 EXTRA_CFLAGS += -DTARGET_IPQ96xx
 endif
 
-ifeq ($(CONFIG_RM_QCA_256M), y)
-EXTRA_CFLAGS += -DRM_QCA_256M_PROFILE=1
-endif
-
-ifeq ($(CONFIG_KERNEL_ARCH_IPQ256M), y)
-EXTRA_CFLAGS += -DRM_QCA_256M_PROFILE=1
-endif
-
 define KernelPackage/rsrcmgr-netstandby-drv
   SECTION:=kernel
   CATEGORY:=Kernel modules
